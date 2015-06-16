@@ -1,0 +1,8 @@
+{
+    // if true, sublime-sourcetree will attempt to locate the SourceTree executable;
+    // otherwise, sourcetree_path is used
+    "detect_sourcetree": true,
+
+    // path to the SourceTree executable, used when detect_sourcetree is false
+    "sourcetree_path": "%PROGRAMFILES(x86)%\\Atlassian\\SourceTree\\SourceTree.exe"
+}

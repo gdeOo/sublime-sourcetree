@@ -1,0 +1,5 @@
+[
+  { "caption": "-" },
+  { "command": "source_tree_file_log", "caption": "SourceTree File Log" },
+  { "caption": "-", "id": "end" }
+]
