@@ -1,0 +1,3 @@
+[
+    { "keys": ["shift+alt+l"], "command": "source_tree_file_log" }
+]
