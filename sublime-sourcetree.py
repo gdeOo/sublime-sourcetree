@@ -69,30 +69,31 @@ class SourceTreeCommand(sublime_plugin.WindowCommand):
 
     def get_main_args(self, report_errors=False):
         file_name = self.window.active_view().file_name()
-        if not file_name or len(file_name) <= 0:
+        if file_name is None or len(file_name) <= 0:
             if report_errors:
                 sublime.error_message(__name__ + ': No file to execute command on.')
+            file_name = None
             repo_root = None
         else:
             repo_root = find_repo_root(file_name)
-            if not repo_root and report_errors:
+            if repo_root is None and report_errors:
                 sublime.error_message(__name__ + ': Unable to find repository root.')
 
         sourcetree = self.sourcetree_path()
-        if not sourcetree and report_errors:
+        if sourcetree is None and report_errors:
             sublime.error_message(__name__ + ': Unable to find SourceTree executable.')
 
         return (sourcetree, repo_root, file_name)
 
     def is_enabled(self):
         (sourcetree, repo_root, file_name) = self.get_main_args()
-        return sourcetree and repo_root and file_name
+        return sourcetree is not None and repo_root is not None and file_name is not None
 
 
 class SourceTreeFileLogCommand(SourceTreeCommand):
     def run(self):
         (sourcetree, repo_root, file_name) = self.get_main_args(True)
-        if sourcetree and repo_root and file_name:
+        if sourcetree is not None and repo_root is not None and file_name is not None:
             self.execute_sourcetree_cmd(sourcetree, ['-f', repo_root, 'filelog', file_name])
 
 
@@ -101,21 +102,23 @@ class SourceTreeSearchCommand(SourceTreeCommand):
         view = self.window.active_view()
         selections = view.sel()
         if len(selections) == 1 and len(view.lines(selections[0])) == 1:
-            return view.substr(selections[0])
+            text = view.substr(selections[0])
+            if len(text) > 0:
+                return text
         return None
 
     def run(self):
         (sourcetree, repo_root, file_name) = self.get_main_args(True)
         search_term = self.get_search_term()
-        if sourcetree and repo_root and search_term:
+        if sourcetree is not None and repo_root is not None and search_term is not None:
             self.execute_sourcetree_cmd(sourcetree, ['-f', repo_root, 'search', search_term])
 
     def is_enabled(self):
-        return super(SourceTreeSearchCommand, self).is_enabled() and self.get_search_term()
+        return super(SourceTreeSearchCommand, self).is_enabled() and self.get_search_term() is not None
 
 
 class SourceTreeCommitCommand(SourceTreeCommand):
     def run(self):
         (sourcetree, repo_root, file_name) = self.get_main_args(True)
-        if sourcetree and repo_root:
+        if sourcetree is not None and repo_root is not None:
             self.execute_sourcetree_cmd(sourcetree, ['-f', repo_root, 'commit'])

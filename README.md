@@ -1,6 +1,6 @@
 # Sublime SourceTree
 
-A [Sublime Text 2](http://www.sublimetext.com/) plugin that integrates with [Atlassian SourceTree](https://www.atlassian.com/software/sourcetree/overview) to provide some useful commands.
+A [Sublime Text 2 & 3](http://www.sublimetext.com/) plugin that integrates with [Atlassian SourceTree](https://www.atlassian.com/software/sourcetree/overview) to provide some useful commands.
 
 ## Installation
 
