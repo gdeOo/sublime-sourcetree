@@ -1,3 +1,5 @@
 [
-    { "keys": ["shift+alt+l"], "command": "source_tree_file_log" }
+    { "keys": ["shift+alt+l"], "command": "source_tree_file_log" },
+    { "keys": ["shift+alt+s"], "command": "source_tree_search" },
+    { "keys": ["shift+alt+c"], "command": "source_tree_commit" }
 ]

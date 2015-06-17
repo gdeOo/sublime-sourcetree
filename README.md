@@ -28,5 +28,13 @@ You may, however, provide the path to the executable yourself by changing the `d
 The plugin offers the following commands:
   * **SourceTree File Log**
 
-      Opens the current file's log view in SourceTree.
+      Opens SourceTree's file log view for the current file.
+
+  * **SourceTree Search for Selection**
+
+      Opens SourceTree's search view using the current selection as the search term.
+
+  * **SourceTree Commit**
+
+      Opens SourceTree's commit view for the current repository.
 

@@ -1,5 +1,7 @@
 [
   { "caption": "-" },
   { "command": "source_tree_file_log", "caption": "SourceTree File Log" },
+  { "command": "source_tree_search", "caption": "SourceTree Search for Selection"},
+  { "command": "source_tree_commit", "caption": "SourceTree Commit" },
   { "caption": "-", "id": "end" }
 ]

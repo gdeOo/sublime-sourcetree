@@ -67,8 +67,6 @@ class SourceTreeCommand(sublime_plugin.WindowCommand):
         else:
             subprocess.Popen([sourcetree_path] + args)
 
-
-class SourceTreeFileComand(SourceTreeCommand):
     def get_main_args(self, report_errors=False):
         file_name = self.window.active_view().file_name()
         if not file_name or len(file_name) <= 0:
@@ -87,11 +85,37 @@ class SourceTreeFileComand(SourceTreeCommand):
         return (sourcetree, repo_root, file_name)
 
     def is_enabled(self):
-        file_name = self.window.active_view().file_name()
-        return file_name and len(file_name) > 0 and self.sourcetree_path() and find_repo_root(file_name)
+        (sourcetree, repo_root, file_name) = self.get_main_args()
+        return sourcetree and repo_root and file_name
 
 
-class SourceTreeFileLogCommand(SourceTreeFileComand):
+class SourceTreeFileLogCommand(SourceTreeCommand):
     def run(self):
         (sourcetree, repo_root, file_name) = self.get_main_args(True)
-        self.execute_sourcetree_cmd(sourcetree, ['-f', repo_root, 'filelog', file_name])
+        if sourcetree and repo_root and file_name:
+            self.execute_sourcetree_cmd(sourcetree, ['-f', repo_root, 'filelog', file_name])
+
+
+class SourceTreeSearchCommand(SourceTreeCommand):
+    def get_search_term(self):
+        view = self.window.active_view()
+        selections = view.sel()
+        if len(selections) == 1 and len(view.lines(selections[0])) == 1:
+            return view.substr(selections[0])
+        return None
+
+    def run(self):
+        (sourcetree, repo_root, file_name) = self.get_main_args(True)
+        search_term = self.get_search_term()
+        if sourcetree and repo_root and search_term:
+            self.execute_sourcetree_cmd(sourcetree, ['-f', repo_root, 'search', search_term])
+
+    def is_enabled(self):
+        return super(SourceTreeSearchCommand, self).is_enabled() and self.get_search_term()
+
+
+class SourceTreeCommitCommand(SourceTreeCommand):
+    def run(self):
+        (sourcetree, repo_root, file_name) = self.get_main_args(True)
+        if sourcetree and repo_root:
+            self.execute_sourcetree_cmd(sourcetree, ['-f', repo_root, 'commit'])
