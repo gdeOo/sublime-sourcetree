@@ -4,6 +4,10 @@ A [Sublime Text 2 & 3](http://www.sublimetext.com/) plugin that integrates with 
 
 ## Installation
 
+### Package Control
+
+You can install the plugin via [Package Control](https://packagecontrol.io/) by searching for `SourceTreeCommands`.
+
 ### Manual installation
 
 Copy the `sublime-sourcetree` folder to the `Packages` folder of Sublime Text 2, which will be located in:
