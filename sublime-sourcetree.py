@@ -39,20 +39,20 @@ def find_repo_root(file_name):
 
 
 class SourceTreeCommand(sublime_plugin.WindowCommand):
-    settings = sublime.load_settings('sublime-sourcetree.sublime-settings')
-
     def sourcetree_path(self):
         if hasattr(self, 'cached_sourcetree_path'):
             return self.cached_sourcetree_path
 
-        if self.settings.get('detect_sourcetree', True):
+        settings = sublime.load_settings('sublime-sourcetree.sublime-settings')
+
+        if settings.get('detect_sourcetree', True):
             bin_path = find_sourcetree()
             if bin_path:
                 self.cached_sourcetree_path = bin_path
                 return bin_path
             return None
 
-        explicit_path = self.settings.get('sourcetree_path')
+        explicit_path = settings.get('sourcetree_path')
         if explicit_path:
             bin_path = os.path.expandvars(explicit_path)
             if os.path.exists(bin_path):
