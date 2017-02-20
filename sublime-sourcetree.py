@@ -86,6 +86,9 @@ class SourceTreeCommand(sublime_plugin.WindowCommand):
         return (sourcetree, repo_root, file_name)
 
     def is_enabled(self):
+        return self.is_visible()
+
+    def is_visible(self):
         (sourcetree, repo_root, file_name) = self.get_main_args()
         return sourcetree is not None and repo_root is not None and file_name is not None
 
