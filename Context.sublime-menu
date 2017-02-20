@@ -3,5 +3,6 @@
   { "command": "source_tree_file_log", "caption": "SourceTree File Log" },
   { "command": "source_tree_search", "caption": "SourceTree Search for Selection"},
   { "command": "source_tree_commit", "caption": "SourceTree Commit" },
+  { "command": "source_tree_not_found", "caption": "SourceTree Not Found" },
   { "caption": "-", "id": "end" }
 ]

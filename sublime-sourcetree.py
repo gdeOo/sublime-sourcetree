@@ -125,3 +125,15 @@ class SourceTreeCommitCommand(SourceTreeCommand):
         (sourcetree, repo_root, file_name) = self.get_main_args(True)
         if sourcetree is not None and repo_root is not None:
             self.execute_sourcetree_cmd(sourcetree, ['-f', repo_root, 'commit'])
+
+
+class SourceTreeNotFoundCommand(SourceTreeCommand):
+    def run(self):
+        pass
+
+    def is_enabled(self):
+        return False
+
+    def is_visible(self):
+        (sourcetree, repo_root, file_name) = self.get_main_args()
+        return sourcetree is None and repo_root is not None and file_name is not None
