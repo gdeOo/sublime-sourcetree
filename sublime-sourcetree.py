@@ -5,7 +5,8 @@ import subprocess
 
 
 def find_sourcetree():
-    for p in ('%PROGRAMFILES(x86)%\\Atlassian\\SourceTree\\SourceTree.exe',
+    for p in ('%LOCALAPPDATA%\\SourceTree\\SourceTree.exe',
+              '%PROGRAMFILES(x86)%\\Atlassian\\SourceTree\\SourceTree.exe',
               '%PROGRAMFILES%\\Atlassian\\SourceTree\\SourceTree.exe',
               '/usr/local/bin/stree',
               '/Applications/SourceTree.app'):
